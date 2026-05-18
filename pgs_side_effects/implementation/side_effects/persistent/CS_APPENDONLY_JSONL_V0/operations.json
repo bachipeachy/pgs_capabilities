@@ -1,0 +1,48 @@
+{
+  "cs_code": "CS_APPENDONLY_JSONL_V0",
+  "version": "v0",
+  "category": "storage",
+  "description": "Append-only JSONL persistence with ordered event history.",
+
+  "operations": {
+    "APPEND": {
+      "summary": "Append a record to the end of the log",
+      "input": ["record", "stream_id", "actor_id"],
+      "output": ["result_status", "record_id", "sequence_number"],
+      "handler": "append",
+      "idempotent": false,
+      "result_status_values": ["SUCCESS", "VIOLATION", "BACKEND_ERROR"],
+      "notes": "NOT idempotent - each call creates a new entry"
+    },
+
+    "GET_ALL": {
+      "summary": "Retrieve all records from the log",
+      "input": ["stream_id"],
+      "output": ["result_status", "entries"],
+      "handler": "read_all",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "BACKEND_ERROR"],
+      "notes": "Returns array of all entries in append order"
+    },
+
+    "GET_RANGE": {
+      "summary": "Retrieve records within a sequence range",
+      "input": ["start_sequence", "end_sequence", "stream_id"],
+      "output": ["result_status", "entries"],
+      "handler": "read_range",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "VIOLATION", "BACKEND_ERROR"],
+      "notes": "Inclusive range [start, end]"
+    },
+
+    "GET_SINCE": {
+      "summary": "Retrieve all records after a given timestamp",
+      "input": ["timestamp", "stream_id"],
+      "output": ["result_status", "entries"],
+      "handler": "read_since",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "VIOLATION", "BACKEND_ERROR"],
+      "notes": "Useful for tailing logs and incremental reads"
+    }
+  }
+}

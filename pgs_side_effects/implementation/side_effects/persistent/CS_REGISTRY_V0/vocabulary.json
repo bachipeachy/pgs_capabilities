@@ -1,0 +1,17 @@
+{
+  "cs_code": "CS_REGISTRY_V0",
+  "version": "v0",
+  "vocabulary": {
+    "result_status": [
+      "SUCCESS",
+      "NOT_FOUND",
+      "ALREADY_EXISTS",
+      "VIOLATION",
+      "BACKEND_ERROR"
+    ],
+    "key_validation_result": [
+      "VALID",
+      "INVALID"
+    ]
+  }
+}

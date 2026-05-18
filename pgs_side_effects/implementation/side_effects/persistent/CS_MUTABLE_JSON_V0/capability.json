@@ -1,0 +1,50 @@
+{
+  "cs_code": "CS_MUTABLE_JSON_V0",
+  "version": "v0",
+
+  "kind": "CS",
+  "side_effect_type": "persistent",
+
+  "description": "Mutable key-addressable JSON capability with last-write-wins semantics.",
+
+  "properties": {
+    "durability": "persistent",
+    "idempotent": true,
+    "replay_policy": "safe_replay",
+    "transactional": false,
+    "concurrent_safe": false
+  },
+
+  "guarantees": [
+    "mutable",
+    "last_write_wins",
+    "json_format",
+    "durable_across_restarts",
+    "key_addressable",
+    "idempotent_operations"
+  ],
+
+  "non_guarantees": [
+    "ordering",
+    "history",
+    "audit",
+    "versioning",
+    "conflict_resolution",
+    "multi_version_concurrency_control",
+    "atomic_batch_operations"
+  ],
+
+  "constraints": {
+    "concurrency": "single_writer",
+    "max_key_length": 256,
+    "max_value_size_mb": 10
+  },
+
+  "configuration_schema": {
+    "path": {
+      "type": "string",
+      "required": true,
+      "description": "Filesystem path to JSON storage file"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "cs_code": "CS_APPENDONLY_JSONL_V0",
+  "version": "v0",
+  "vocabulary": {
+    "result_status": [
+      "SUCCESS",
+      "NOT_FOUND",
+      "VIOLATION",
+      "BACKEND_ERROR"
+    ],
+    "entry_validation_result": [
+      "VALID",
+      "INVALID"
+    ]
+  }
+}

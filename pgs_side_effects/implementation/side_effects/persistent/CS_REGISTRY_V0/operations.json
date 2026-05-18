@@ -1,0 +1,48 @@
+{
+  "cs_code": "CS_REGISTRY_V0",
+  "version": "v0",
+  "category": "storage",
+  "description": "Registry capability providing stable indirection by binding symbolic keys to opaque addresses and underlying storage references.",
+
+  "operations": {
+    "REGISTER": {
+      "summary": "Register a new key → (address, target_cs, target_ref) binding",
+      "input": ["key", "target_cs", "target_ref"],
+      "output": ["result_status", "address"],
+      "handler": "register",
+      "idempotent": false,
+      "result_status_values": ["SUCCESS", "ALREADY_EXISTS", "VIOLATION", "BACKEND_ERROR"],
+      "notes": "Creates immutable binding. Key must be unique. Returns deterministic address."
+    },
+
+    "RESOLVE": {
+      "summary": "Resolve a key or address to its storage target",
+      "input": ["key_or_address"],
+      "output": ["result_status", "target_cs", "target_ref"],
+      "handler": "resolve",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "NOT_FOUND", "VIOLATION", "BACKEND_ERROR"],
+      "notes": "Accepts either symbolic key or opaque address. Returns where data is actually stored."
+    },
+
+    "EXISTS": {
+      "summary": "Check if a key or address is registered",
+      "input": ["key_or_address"],
+      "output": ["result_status", "exists"],
+      "handler": "exists",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "VIOLATION", "BACKEND_ERROR"],
+      "notes": "Returns boolean exists flag"
+    },
+
+    "DEREGISTER": {
+      "summary": "Mark a key or address as deregistered (append tombstone)",
+      "input": ["key_or_address"],
+      "output": ["result_status"],
+      "handler": "deregister",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "NOT_FOUND", "VIOLATION", "BACKEND_ERROR"],
+      "notes": "Append-only deletion (tombstone record). Idempotent - repeated calls return SUCCESS."
+    }
+  }
+}

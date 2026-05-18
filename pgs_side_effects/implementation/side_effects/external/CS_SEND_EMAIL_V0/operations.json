@@ -1,0 +1,18 @@
+{
+  "cs_code": "CS_SEND_EMAIL_V0",
+  "version": "v0",
+  "category": "notification",
+  "description": "SMTP-based email sending with testbed-safe skipping.",
+
+  "operations": {
+    "SEND": {
+      "summary": "Send an email to a recipient",
+      "input": ["recipient", "subject", "body_template", "template_vars"],
+      "output": ["result_status", "delivery_status"],
+      "handler": "send",
+      "idempotent": false,
+      "result_status_values": ["SUCCESS", "VIOLATION", "BACKEND_ERROR"],
+      "notes": "Returns SUCCESS with delivery_status 'skipped' when SMTP is not configured"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "cs_code": "CS_REGISTRY_V0",
+  "version": "v0",
+
+  "kind": "CS",
+  "side_effect_type": "persistent",
+
+  "description": "Registry capability providing stable indirection by binding symbolic keys to opaque addresses and underlying storage references. Meta-capability that coordinates access to other storage capabilities.",
+
+  "properties": {
+    "durability": "persistent",
+    "idempotent": false,
+    "replay_policy": "append_once",
+    "transactional": false,
+    "concurrent_safe": "register_once"
+  },
+
+  "guarantees": [
+    "stable_addressing",
+    "key_uniqueness",
+    "deterministic_address_generation",
+    "deterministic_resolution",
+    "durable_across_restarts",
+    "append_only_bindings",
+    "immutable_bindings",
+    "tombstone_based_deregistration"
+  ],
+
+  "non_guarantees": [
+    "data_storage",
+    "data_validation",
+    "data_transformation",
+    "ordering_guarantees",
+    "history_tracking",
+    "audit_trail",
+    "rebinding_support",
+    "deterministic_replay_on_failure",
+    "garbage_collection"
+  ],
+
+  "constraints": {
+    "mutability": "append_only",
+    "key_scope": "global",
+    "max_key_length": 256,
+    "address_format": "content_addressable_hash",
+    "deregistration_model": "tombstone"
+  },
+
+  "configuration_schema": {
+    "path": {
+      "type": "string",
+      "required": true,
+      "description": "Filesystem path to JSONL registry file (append-only)"
+    }
+  },
+
+  "architecture": {
+    "role": "Meta-capability for indirection",
+    "purpose": "Provides stable symbolic addressing layer above concrete storage",
+    "bindings": {
+      "key": "Human-readable symbolic identifier (e.g., 'Alice|Doe|alice@example.com')",
+      "address": "Opaque content-addressable hash (e.g., 'reg_a3f2c1...')",
+      "target_cs": "Which storage capability holds the actual data (e.g., 'CS_MUTABLE_JSON_V0')",
+      "target_ref": "Reference within that capability (e.g., 'user_001')"
+    }
+  },
+
+  "use_cases": [
+    "Address book: map kyc_key → user_id in user index",
+    "Name service: map DNS-like names → storage locations",
+    "Content addressing: map human keys → content hashes",
+    "Symbolic links: stable references across storage reorganization"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "cs_code": "CS_SEND_EMAIL_V0",
+  "version": "v0",
+  "vocabulary": {
+    "result_status": [
+      "SUCCESS",
+      "VIOLATION",
+      "BACKEND_ERROR"
+    ],
+    "delivery_status": [
+      "sent",
+      "skipped"
+    ]
+  }
+}

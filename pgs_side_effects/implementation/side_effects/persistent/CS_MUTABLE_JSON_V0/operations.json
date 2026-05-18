@@ -1,0 +1,55 @@
+{
+  "cs_code": "CS_MUTABLE_JSON_V0",
+  "version": "v0",
+  "category": "storage",
+  "description": "Mutable key-addressable JSON capability with last-write-wins semantics.",
+
+  "operations": {
+    "GET": {
+      "summary": "Retrieve value for a given key",
+      "input": ["key"],
+      "output": ["result_status", "value"],
+      "handler": "read",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "NOT_FOUND", "VIOLATION", "BACKEND_ERROR"]
+    },
+
+    "PUT": {
+      "summary": "Store or update a value at the given key",
+      "input": ["key", "value"],
+      "output": ["result_status"],
+      "handler": "write",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "VIOLATION", "BACKEND_ERROR"],
+      "notes": "Last-write-wins - overwrites existing value"
+    },
+
+    "DELETE": {
+      "summary": "Remove the given key and its value",
+      "input": ["key"],
+      "output": ["result_status"],
+      "handler": "delete",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "NOT_FOUND", "VIOLATION", "BACKEND_ERROR"]
+    },
+
+    "EXISTS": {
+      "summary": "Check if a key exists in storage",
+      "input": ["key"],
+      "output": ["result_status", "exists"],
+      "handler": "exists",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "VIOLATION", "BACKEND_ERROR"]
+    },
+
+    "LIST": {
+      "summary": "List all keys in storage",
+      "input": [],
+      "output": ["result_status", "keys"],
+      "handler": "list_keys",
+      "idempotent": true,
+      "result_status_values": ["SUCCESS", "BACKEND_ERROR"],
+      "notes": "Returns array of key strings"
+    }
+  }
+}

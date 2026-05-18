@@ -1,0 +1,33 @@
+{
+  "cs_code": "CS_APPENDONLY_JSONL_V0",
+  "version": "v0",
+
+  "kind": "CS",
+  "side_effect_type": "persistent",
+
+  "supported_capability_contracts": [
+    "CC_APPEND_RECORD_V0"
+  ],
+
+  "description": "Append-only JSONL persistence with ordered event history.",
+
+  "durability": "persistent",
+  "idempotent": false,
+  "replay_policy": "append_once",
+
+  "guarantees": [
+    "append_only",
+    "ordered",
+    "jsonl_format",
+    "durable_across_restarts"
+  ],
+
+  "non_guarantees": [
+    "mutation",
+    "overwrite",
+    "random_access",
+    "deletion",
+    "key_addressability",
+    "exactly_once_delivery"
+  ]
+}
