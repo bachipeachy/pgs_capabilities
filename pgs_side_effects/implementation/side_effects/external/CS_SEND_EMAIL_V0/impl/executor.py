@@ -32,7 +32,7 @@ class SendEmailEngine:
         self._smtp_port = int(config.get("smtp_port") or os.environ.get("SMTP_PORT", "587"))
         self._smtp_user = config.get("smtp_user") or os.environ.get("SMTP_USER")
         self._smtp_pass = config.get("smtp_pass") or os.environ.get("SMTP_PASS")
-        self._sender = config.get("sender") or os.environ.get("SMTP_SENDER", "noreply@omnibachi.local")
+        self._sender = config.get("sender") or os.environ.get("SMTP_SENDER", "noreply@pgs.local")
 
     def _is_configured(self) -> bool:
         return bool(self._smtp_host and self._smtp_user and self._smtp_pass)

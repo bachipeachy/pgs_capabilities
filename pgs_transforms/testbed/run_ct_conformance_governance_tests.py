@@ -7,7 +7,7 @@
 from pgs_structure.structure.resolution import bootstrap
 bootstrap()
 
-from omnibachi.implementation.execution.machine.transforms.ct_executor import CTExecutionError
+from pgs_runtime.ct_executor import CTExecutionError
 from pgs_transforms.implementation.transforms.atoms.ct_pure_validate_set_membership_v0 import (
     execute as validate_set_membership,
 )

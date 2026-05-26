@@ -99,7 +99,7 @@ Send a single email to a recipient.
 | smtp_port | integer | false | SMTP server port (default 587) |
 | smtp_user | string | false | SMTP authentication username |
 | smtp_pass | string | false | SMTP authentication password |
-| sender | string | false | Sender email address (default noreply@omnibachi.local) |
+| sender | string | false | Sender email address (default noreply@pgs.local) |
 
 ---
 

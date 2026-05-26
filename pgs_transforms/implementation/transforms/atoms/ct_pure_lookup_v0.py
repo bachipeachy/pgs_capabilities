@@ -14,7 +14,7 @@ Implementation:
 
 from typing import Dict, Any
 
-from omnibachi.implementation.execution.machine.transforms.ct_executor import CTExecutionError
+from pgs_runtime.ct_executor import CTExecutionError
 
 
 def execute(inputs: Dict[str, Any], context: Any = None) -> Dict[str, Any]:
