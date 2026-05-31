@@ -57,6 +57,14 @@ class RegistryExecutor:
         except StorageUnavailable:
             return {"result_status": "BACKEND_ERROR"}
 
+    def count(self, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Count active (non-tombstoned) registry entries."""
+        try:
+            count = self._backend.count()
+            return {"result_status": "SUCCESS", "count": count}
+        except StorageUnavailable:
+            return {"result_status": "BACKEND_ERROR"}
+
     def deregister(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """Deregister a registry entry (tombstone, does not delete storage)."""
         if "key_or_address" not in payload:

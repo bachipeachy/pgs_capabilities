@@ -152,6 +152,15 @@ Mark a key or address as deregistered (append tombstone).
 - **Result Status Values:** SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR
 - **Note:** Append-only deletion (tombstone record). Idempotent — repeated calls return SUCCESS.
 
+### 9.5 COUNT
+Count active (non-tombstoned) registry entries.
+
+- **Input:** (none)
+- **Output:** `result_status`, `count` (integer)
+- **Idempotent:** true
+- **Result Status Values:** SUCCESS, BACKEND_ERROR
+- **Note:** Returns the number of currently active bindings (tombstoned entries excluded).
+
 ---
 
 ## 10. Failure Semantics
@@ -233,7 +242,7 @@ core:
   category: storage
 
   policy:
-    operations: [REGISTER, RESOLVE, EXISTS, DEREGISTER]
+    operations: [REGISTER, RESOLVE, EXISTS, DEREGISTER, COUNT]
 
   operations:
     REGISTER:
@@ -267,6 +276,14 @@ core:
       output: [result_status]
       idempotent: true
       result_status_values: [SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR]
+
+    COUNT:
+      summary: Count active (non-tombstoned) registry entries
+      handler: count
+      input: []
+      output: [result_status, count]
+      idempotent: true
+      result_status_values: [SUCCESS, BACKEND_ERROR]
 
 implementation:
   module: pgs_side_effects.implementation.side_effects.persistent.CS_REGISTRY_V0.runtime

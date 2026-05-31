@@ -113,7 +113,7 @@ This CS does NOT guarantee:
 
 ## 9. Operations
 
-### 9.1 GET
+### 9.1 READ
 Retrieve value for a given key.
 
 - **Input:** `key` (string, required)
@@ -121,7 +121,7 @@ Retrieve value for a given key.
 - **Idempotent:** true
 - **Result Status Values:** SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR
 
-### 9.2 PUT
+### 9.2 WRITE
 Store or update a value at the given key.
 
 - **Input:** `key` (string, required), `value` (object, required)
@@ -215,10 +215,10 @@ core:
   category: storage
 
   policy:
-    operations: [GET, PUT, DELETE, EXISTS, LIST]
+    operations: [READ, WRITE, DELETE, EXISTS, LIST]
 
   operations:
-    GET:
+    READ:
       summary: Retrieve value for a given key
       handler: read
       input: [key]
@@ -226,7 +226,7 @@ core:
       idempotent: true
       result_status_values: [SUCCESS, NOT_FOUND, VIOLATION, BACKEND_ERROR]
 
-    PUT:
+    WRITE:
       summary: Store or update a value at the given key
       handler: write
       input: [key, value]

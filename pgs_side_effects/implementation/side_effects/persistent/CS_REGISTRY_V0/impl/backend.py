@@ -86,6 +86,10 @@ class RegistryBackend:
         entries = self._load_all()
         return self._find_entry(key_or_address, entries) is not None
 
+    def count(self) -> int:
+        """Count active (non-tombstoned) registry entries."""
+        return len(self._load_all())
+
     def deregister(self, key_or_address: str) -> bool:
         """Logical deregister via tombstone append."""
         entries = self._load_all()

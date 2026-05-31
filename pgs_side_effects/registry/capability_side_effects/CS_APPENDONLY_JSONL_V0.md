@@ -19,8 +19,6 @@ Provide an append-only JSONL persistence layer with ordered event history.
 This capability allows:
 - Appending records to the end of a log
 - Reading all records in order
-- Reading records within a sequence range
-- Reading records since a given timestamp
 
 ---
 
@@ -128,24 +126,6 @@ Retrieve all records from the log.
 - **Result Status Values:** SUCCESS, BACKEND_ERROR
 - **Note:** Returns array of all entries in append order
 
-### 9.3 GET_RANGE
-Retrieve records within a sequence range.
-
-- **Input:** `start_sequence` (integer, required), `end_sequence` (integer, required), `stream_id` (string, required)
-- **Output:** `result_status`, `entries`
-- **Idempotent:** true
-- **Result Status Values:** SUCCESS, VIOLATION, BACKEND_ERROR
-- **Note:** Inclusive range [start, end]
-
-### 9.4 GET_SINCE
-Retrieve all records after a given timestamp.
-
-- **Input:** `timestamp` (string, required), `stream_id` (string, required)
-- **Output:** `result_status`, `entries`
-- **Idempotent:** true
-- **Result Status Values:** SUCCESS, VIOLATION, BACKEND_ERROR
-- **Note:** Useful for tailing logs and incremental reads
-
 ---
 
 ## 10. Failure Semantics
@@ -155,7 +135,6 @@ Retrieve all records after a given timestamp.
 | Status | Condition | Error Type |
 |--------|-----------|------------|
 | VIOLATION | Record fails validation (type, format) | InvalidRecord |
-| VIOLATION | Range parameters invalid | InvalidRange |
 | BACKEND_ERROR | Storage unavailable or corrupt | StorageUnavailable, StorageCorrupt |
 
 ### Behavior
@@ -207,7 +186,7 @@ core:
   category: storage
 
   policy:
-    operations: [APPEND, GET_ALL, GET_RANGE, GET_SINCE]
+    operations: [APPEND, GET_ALL]
 
   operations:
     APPEND:
@@ -225,22 +204,6 @@ core:
       output: [result_status, entries]
       idempotent: true
       result_status_values: [SUCCESS, BACKEND_ERROR]
-
-    GET_RANGE:
-      summary: Retrieve records within a sequence range
-      handler: read_range
-      input: [start_sequence, end_sequence, stream_id]
-      output: [result_status, entries]
-      idempotent: true
-      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
-
-    GET_SINCE:
-      summary: Retrieve all records after a given timestamp
-      handler: read_since
-      input: [timestamp, stream_id]
-      output: [result_status, entries]
-      idempotent: true
-      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
 
 implementation:
   module: pgs_side_effects.implementation.side_effects.persistent.CS_APPENDONLY_JSONL_V0.runtime
@@ -273,6 +236,5 @@ extensions:
 
   failure_modes:
     - "VIOLATION: Invalid record (type, format)"
-    - "VIOLATION: Invalid range parameters"
     - "BACKEND_ERROR: Storage unavailable or corrupt"
 ```
