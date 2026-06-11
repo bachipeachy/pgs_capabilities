@@ -42,6 +42,7 @@ Test BIP-32 child key derivation.
 
 ```yaml
 case_id: derive_hardened_child
+expected_outcome: SUCCESS
 bindings:
   parent_private_key_bytes: "0xf79bb0d317b310b261a55a8ab393b4c8a1aba6fa4d08aef379caba502d5d67f9"
   parent_chain_code_bytes: "0x463223aac10fb13f291a1bc76bc26003d98da661cb76df61e750c139826dea8b"
@@ -58,6 +59,7 @@ expected:
 
 ```yaml
 case_id: derive_normal_child
+expected_outcome: SUCCESS
 bindings:
   parent_private_key_bytes: "0xf79bb0d317b310b261a55a8ab393b4c8a1aba6fa4d08aef379caba502d5d67f9"
   parent_chain_code_bytes: "0x463223aac10fb13f291a1bc76bc26003d98da661cb76df61e750c139826dea8b"

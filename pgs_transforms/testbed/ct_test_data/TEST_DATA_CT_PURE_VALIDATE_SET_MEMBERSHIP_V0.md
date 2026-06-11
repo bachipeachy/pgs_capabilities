@@ -42,6 +42,7 @@ Test set membership validation.
 
 ```yaml
 case_id: value_in_set
+expected_outcome: SUCCESS
 bindings:
   value: "active"
   allowed_set: ["active", "pending", "inactive"]
@@ -52,14 +53,14 @@ expected:
 
 ### Case 2: value_not_in_set
 
-**Description:** Value is not member of allowed set
+**Description:** Value is not member of allowed set — CT must raise VIOLATION
 
 ```yaml
 case_id: value_not_in_set
+expected_outcome: VIOLATION
 bindings:
   value: "deleted"
   allowed_set: ["active", "pending", "inactive"]
 
-expected:
-  is_member: false
+expected: {}
 ```

@@ -42,6 +42,7 @@ Test Keccak-256 cryptographic hash computation.
 
 ```yaml
 case_id: hash_simple_hex
+expected_outcome: SUCCESS
 bindings:
   input_bytes: "0x48656c6c6f"
 
@@ -55,6 +56,7 @@ expected:
 
 ```yaml
 case_id: hash_without_prefix
+expected_outcome: SUCCESS
 bindings:
   input_bytes: "48656c6c6f"
 
@@ -68,6 +70,7 @@ expected:
 
 ```yaml
 case_id: hash_empty
+expected_outcome: SUCCESS
 bindings:
   input_bytes: "0x"
 

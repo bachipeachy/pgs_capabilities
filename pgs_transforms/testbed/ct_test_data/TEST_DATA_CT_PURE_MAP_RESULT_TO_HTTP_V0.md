@@ -50,6 +50,7 @@ Tests cover:
 
 ```yaml
 case_id: success_with_data
+expected_outcome: SUCCESS
 bindings:
   execution_result:
     status: "SUCCESS"
@@ -83,6 +84,7 @@ expected:
 
 ```yaml
 case_id: failure_with_error
+expected_outcome: SUCCESS
 bindings:
   execution_result:
     status: "FAILED"
@@ -114,6 +116,7 @@ expected:
 
 ```yaml
 case_id: error_with_custom_mapping
+expected_outcome: SUCCESS
 bindings:
   execution_result:
     status: "FAILED"
@@ -145,6 +148,7 @@ expected:
 
 ```yaml
 case_id: success_empty_value
+expected_outcome: SUCCESS
 bindings:
   execution_result:
     status: "SUCCESS"
@@ -172,6 +176,7 @@ expected:
 
 ```yaml
 case_id: success_complex_nested
+expected_outcome: SUCCESS
 bindings:
   execution_result:
     status: "SUCCESS"
@@ -223,6 +228,7 @@ expected:
 
 ```yaml
 case_id: failure_validation_array
+expected_outcome: SUCCESS
 bindings:
   execution_result:
     status: "FAILED"

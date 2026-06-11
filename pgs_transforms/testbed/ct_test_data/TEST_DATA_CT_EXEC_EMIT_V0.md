@@ -53,6 +53,7 @@ Tests cover:
 
 ```yaml
 case_id: emit_string
+expected_outcome: SUCCESS
 bindings:
   value: "Hello, World!"
 
@@ -66,6 +67,7 @@ expected:
 
 ```yaml
 case_id: emit_integer
+expected_outcome: SUCCESS
 bindings:
   value: 42
 
@@ -79,6 +81,7 @@ expected:
 
 ```yaml
 case_id: emit_boolean_true
+expected_outcome: SUCCESS
 bindings:
   value: true
 
@@ -92,6 +95,7 @@ expected:
 
 ```yaml
 case_id: emit_boolean_false
+expected_outcome: SUCCESS
 bindings:
   value: false
 
@@ -105,6 +109,7 @@ expected:
 
 ```yaml
 case_id: emit_null
+expected_outcome: SUCCESS
 bindings:
   value: null
 
@@ -118,6 +123,7 @@ expected:
 
 ```yaml
 case_id: emit_simple_object
+expected_outcome: SUCCESS
 bindings:
   value:
     status: "success"
@@ -137,6 +143,7 @@ expected:
 
 ```yaml
 case_id: emit_nested_object
+expected_outcome: SUCCESS
 bindings:
   value:
     transaction:
@@ -182,6 +189,7 @@ expected:
 
 ```yaml
 case_id: emit_array_primitives
+expected_outcome: SUCCESS
 bindings:
   value:
     - "alice"
@@ -203,6 +211,7 @@ expected:
 
 ```yaml
 case_id: emit_array_objects
+expected_outcome: SUCCESS
 bindings:
   value:
     - id: "user_1"
@@ -234,6 +243,7 @@ expected:
 
 ```yaml
 case_id: emit_empty_object
+expected_outcome: SUCCESS
 bindings:
   value: {}
 
@@ -247,6 +257,7 @@ expected:
 
 ```yaml
 case_id: emit_empty_array
+expected_outcome: SUCCESS
 bindings:
   value: []
 
@@ -260,6 +271,7 @@ expected:
 
 ```yaml
 case_id: emit_mixed_array
+expected_outcome: SUCCESS
 bindings:
   value:
     - "string"
@@ -289,6 +301,7 @@ expected:
 
 ```yaml
 case_id: emit_workflow_result
+expected_outcome: SUCCESS
 bindings:
   value:
     workflow_id: "wf_build_platform_v0"
@@ -346,6 +359,7 @@ expected:
 
 ```yaml
 case_id: emit_large_array
+expected_outcome: SUCCESS
 bindings:
   value:
     - {id: 0, value: "item_0"}
@@ -369,6 +383,7 @@ expected:
 
 ```yaml
 case_id: emit_unicode_strings
+expected_outcome: SUCCESS
 bindings:
   value:
     greeting: "你好世界"  # Hello World (Chinese)

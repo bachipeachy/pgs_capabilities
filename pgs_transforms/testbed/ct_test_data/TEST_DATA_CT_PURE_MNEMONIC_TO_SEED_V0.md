@@ -42,6 +42,7 @@ Test BIP-39 seed derivation from mnemonic phrase via PBKDF2.
 
 ```yaml
 case_id: mnemonic_to_seed_basic
+expected_outcome: SUCCESS
 bindings:
   mnemonic: "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
 

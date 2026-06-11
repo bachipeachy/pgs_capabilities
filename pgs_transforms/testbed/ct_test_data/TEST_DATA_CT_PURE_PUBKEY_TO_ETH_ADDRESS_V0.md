@@ -42,6 +42,7 @@ Test Ethereum address derivation from uncompressed public key.
 
 ```yaml
 case_id: pubkey_to_address
+expected_outcome: SUCCESS
 bindings:
   public_key_uncompressed_bytes: "0x04000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f"
 

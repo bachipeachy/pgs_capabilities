@@ -42,6 +42,7 @@ Test JSONPath-based value extraction from structured data.
 
 ```yaml
 case_id: extract_top_level_field
+expected_outcome: SUCCESS
 bindings:
   from:
     name: "Alice"
@@ -59,6 +60,7 @@ expected:
 
 ```yaml
 case_id: extract_nested_field
+expected_outcome: SUCCESS
 bindings:
   from:
     user:
@@ -77,6 +79,7 @@ expected:
 
 ```yaml
 case_id: extract_nested_numeric
+expected_outcome: SUCCESS
 bindings:
   from:
     config:

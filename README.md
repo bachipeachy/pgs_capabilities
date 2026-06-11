@@ -8,7 +8,7 @@ It is not where behavior is defined.
 
 Behavior is declared in protocol, executed by runtime, implemented in capabilities, and observed via traces and state.
 
-> **New to PGS?** This is one of eight repositories in the Protocol-Governed Systems ecosystem.
+> **New to PGS?** This is one of the repositories in the Protocol-Governed Systems ecosystem.
 > For orientation, architecture overview, and end-to-end execution, start at [pgs_workspace](https://github.com/bachipeachy/pgs_workspace).
 
 ---
@@ -180,6 +180,7 @@ If behavior needs to change, change the protocol. If an implementation needs to 
 | **`pgs_capabilities` ← here** | **Implements CT/CS** |
 | `pgs_blockchain` | Domain workflows that use these capabilities |
 | `pgs_ai_governance` | Governance workflows that use these capabilities |
+| `pgs_change_mgmt` | Governed SDLC — Change Request to Authoring Mandate (new in v0.5.0) |
 | `pgs_workspace` | Entry point for execution |
 
 ---

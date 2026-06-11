@@ -42,6 +42,7 @@ Test BIP-39 mnemonic generation from entropy bytes.
 
 ```yaml
 case_id: entropy_128_bits
+expected_outcome: SUCCESS
 bindings:
   entropy_bytes: "0x00000000000000000000000000000000"
 
@@ -55,6 +56,7 @@ expected:
 
 ```yaml
 case_id: entropy_256_bits
+expected_outcome: SUCCESS
 bindings:
   entropy_bytes: "0x0000000000000000000000000000000000000000000000000000000000000000"
 

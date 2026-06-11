@@ -42,6 +42,7 @@ Test training completion eligibility check.
 
 ```yaml
 case_id: training_completed
+expected_outcome: SUCCESS
 bindings:
   training_completed: true
 
@@ -55,6 +56,7 @@ expected:
 
 ```yaml
 case_id: training_not_completed
+expected_outcome: SUCCESS
 bindings:
   training_completed: false
 

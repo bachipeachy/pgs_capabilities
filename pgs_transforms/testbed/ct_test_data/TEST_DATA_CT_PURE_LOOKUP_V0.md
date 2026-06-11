@@ -42,6 +42,7 @@ Test key-value lookup in mapping objects.
 
 ```yaml
 case_id: lookup_string_value
+expected_outcome: SUCCESS
 bindings:
   key: "status"
   map:
@@ -58,6 +59,7 @@ expected:
 
 ```yaml
 case_id: lookup_numeric_value
+expected_outcome: SUCCESS
 bindings:
   key: "count"
   map:
@@ -74,6 +76,7 @@ expected:
 
 ```yaml
 case_id: lookup_object_value
+expected_outcome: SUCCESS
 bindings:
   key: "config"
   map:
@@ -94,6 +97,7 @@ expected:
 
 ```yaml
 case_id: lookup_array_value
+expected_outcome: SUCCESS
 bindings:
   key: "tags"
   map:

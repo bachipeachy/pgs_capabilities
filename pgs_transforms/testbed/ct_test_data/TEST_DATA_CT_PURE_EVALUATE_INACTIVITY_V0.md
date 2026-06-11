@@ -42,6 +42,7 @@ Test inactivity evaluation based on date thresholds.
 
 ```yaml
 case_id: user_inactive
+expected_outcome: SUCCESS
 bindings:
   last_active_date: "2024-01-01T00:00:00Z"
   threshold_days: 30
@@ -58,6 +59,7 @@ expected:
 
 ```yaml
 case_id: user_active
+expected_outcome: SUCCESS
 bindings:
   last_active_date: "2024-02-10T00:00:00Z"
   threshold_days: 30

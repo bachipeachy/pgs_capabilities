@@ -42,6 +42,7 @@ Test record assembly from field values.
 
 ```yaml
 case_id: assemble_simple_record
+expected_outcome: SUCCESS
 bindings:
   fields:
     name: "Alice"
@@ -61,6 +62,7 @@ expected:
 
 ```yaml
 case_id: assemble_nested_record
+expected_outcome: SUCCESS
 bindings:
   fields:
     user_id: "123"

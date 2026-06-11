@@ -53,12 +53,12 @@ def execute(inputs: Dict[str, Any], context: Any = None) -> Dict[str, Any]:
         value = parameters.get(field)
 
         if not _evaluate_rule(value, op, rule):
-            return {
-                "valid": False,
-                "failed_rule": rule,
-            }
+            raise CTExecutionError(
+                f"CT_PURE_VALIDATE_PARAMETER_RULES_V0: rule failed — field='{field}' op='{op}' rule={rule}"
+            )
 
     return {
+        "result_status": "SUCCESS",
         "valid": True,
         "failed_rule": None,
     }

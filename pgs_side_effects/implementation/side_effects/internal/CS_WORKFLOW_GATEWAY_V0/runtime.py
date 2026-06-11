@@ -71,21 +71,16 @@ class WorkflowGatewayRuntime:
             return self._error("VIOLATION", "Missing payload")
 
         try:
-            # Use injected workflow executor instead of importing from pgs_ingress
-            result = self._workflow_executor(
-                workflow_code=workflow_code,
-                payload=inner_payload,
-                runtime_binding=self._default_rb,
-                mode="runtime",
-            )
+            # Executor interface: (wf_fqdn_or_addr, payload) → (result_status, surface)
+            result_status, surface = self._workflow_executor(workflow_code, inner_payload)
 
             return {
-                "result_status": "SUCCESS" if result.status == "SUCCESS" else self._map_exit_reason(result.exit_reason_code),
-                "execution_result": result.to_dict(),
+                "result_status": result_status,
+                "execution_result": {"status": result_status, **surface},
             }
 
-        except ValueError as e:
-            if "Unknown workflow" in str(e):
+        except (KeyError, RuntimeError) as e:
+            if "not in vocab" in str(e) or "No entry point" in str(e):
                 return self._error("NOT_FOUND", str(e))
             return self._error("BACKEND_ERROR", str(e))
         except Exception as e:

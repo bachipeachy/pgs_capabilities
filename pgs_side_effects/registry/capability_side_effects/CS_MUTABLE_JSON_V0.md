@@ -154,6 +154,14 @@ List all keys in storage.
 - **Idempotent:** true
 - **Result Status Values:** SUCCESS, BACKEND_ERROR
 
+### 9.6 DELETE_MANY
+Delete a list of keys in a single operation. Idempotent per key — NOT_FOUND is treated as already deleted.
+
+- **Input:** `keys` (array of string, required)
+- **Output:** `result_status`, `drained_count` (integer — number of keys actually removed)
+- **Idempotent:** true
+- **Result Status Values:** SUCCESS, VIOLATION, BACKEND_ERROR
+
 ---
 
 ## 10. Failure Semantics
@@ -215,7 +223,7 @@ core:
   category: storage
 
   policy:
-    operations: [READ, WRITE, DELETE, EXISTS, LIST]
+    operations: [READ, WRITE, DELETE, DELETE_MANY, EXISTS, LIST, UPDATE_WHERE]
 
   operations:
     READ:
@@ -258,6 +266,23 @@ core:
       idempotent: true
       result_status_values: [SUCCESS, BACKEND_ERROR]
 
+    DELETE_MANY:
+      summary: Delete a list of keys; idempotent per key (NOT_FOUND treated as already deleted)
+      handler: delete_many
+      input: [keys]
+      output: [result_status, drained_count]
+      idempotent: true
+      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
+
+    UPDATE_WHERE:
+      summary: Atomically update all records matching ALL filter conditions; serialized per file
+      handler: update_where
+      input: [filter, updates]
+      output: [result_status, matched_keys, updated_count]
+      idempotent: false
+      result_status_values: [SUCCESS, VIOLATION, BACKEND_ERROR]
+      notes: "filter={field:value,...} AND semantics; updates={field:value,...} applied to all matched records; null value removes field; VIOLATION when no records match; load+filter+update+save serialized under per-file threading lock"
+
 implementation:
   module: pgs_side_effects.implementation.side_effects.persistent.CS_MUTABLE_JSON_V0.runtime
   callable: MutableJsonRuntime
@@ -271,7 +296,7 @@ extensions:
     idempotent: true
     replay_policy: safe_replay
     transactional: false
-    concurrent_safe: false
+    concurrent_safe: true
 
   constraints:
     concurrency: single_writer

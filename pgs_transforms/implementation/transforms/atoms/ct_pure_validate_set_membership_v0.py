@@ -37,6 +37,12 @@ def execute(inputs: Dict[str, Any], context: Any = None) -> Dict[str, Any]:
 
     is_member = value in allowed_set
 
+    if not is_member:
+        raise CTExecutionError(
+            f"CT_PURE_VALIDATE_SET_MEMBERSHIP_V0: value '{value}' is not in allowed_set {allowed_set}"
+        )
+
     return {
-        "is_member": is_member,
+        "result_status": "SUCCESS",
+        "is_member": True,
     }

@@ -42,6 +42,7 @@ Test elliptic curve public key derivation from private key.
 
 ```yaml
 case_id: secp256k1_pubkey
+expected_outcome: SUCCESS
 bindings:
   private_key_bytes: "0xf79bb0d317b310b261a55a8ab393b4c8a1aba6fa4d08aef379caba502d5d67f9"
   curve: "secp256k1"

@@ -42,6 +42,7 @@ Test record structure validation against schema.
 
 ```yaml
 case_id: valid_record
+expected_outcome: SUCCESS
 bindings:
   record:
     name: "Alice"
@@ -64,6 +65,7 @@ expected:
 
 ```yaml
 case_id: invalid_record_missing_field
+expected_outcome: SUCCESS
 bindings:
   record:
     name: "Bob"

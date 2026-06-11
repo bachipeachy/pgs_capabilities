@@ -42,6 +42,7 @@ Test cryptographic entropy generation.
 
 ```yaml
 case_id: generate_128_bit_entropy
+expected_outcome: SUCCESS
 bindings:
   entropy_bits: 128
 
@@ -60,6 +61,7 @@ assertions:
 
 ```yaml
 case_id: generate_256_bit_entropy
+expected_outcome: SUCCESS
 bindings:
   entropy_bits: 256
 

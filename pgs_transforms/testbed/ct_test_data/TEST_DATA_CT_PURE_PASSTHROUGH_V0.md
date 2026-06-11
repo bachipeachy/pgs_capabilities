@@ -42,6 +42,7 @@ Test that PASSTHROUGH returns input value unchanged for various data types.
 
 ```yaml
 case_id: passthrough_string
+expected_outcome: SUCCESS
 bindings:
   value: "hello world"
 
@@ -55,6 +56,7 @@ expected:
 
 ```yaml
 case_id: passthrough_number
+expected_outcome: SUCCESS
 bindings:
   value: 42
 
@@ -68,6 +70,7 @@ expected:
 
 ```yaml
 case_id: passthrough_object
+expected_outcome: SUCCESS
 bindings:
   value:
     key: "test"
@@ -85,6 +88,7 @@ expected:
 
 ```yaml
 case_id: passthrough_array
+expected_outcome: SUCCESS
 bindings:
   value: [1, 2, 3]
 
@@ -98,6 +102,7 @@ expected:
 
 ```yaml
 case_id: passthrough_boolean
+expected_outcome: SUCCESS
 bindings:
   value: true
 

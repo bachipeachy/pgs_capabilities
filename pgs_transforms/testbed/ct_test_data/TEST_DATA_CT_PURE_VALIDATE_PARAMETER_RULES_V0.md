@@ -42,6 +42,7 @@ Test parameter validation against rules.
 
 ```yaml
 case_id: all_rules_pass
+expected_outcome: SUCCESS
 bindings:
   parameters:
     amount: 100
@@ -58,10 +59,11 @@ expected:
 
 ### Case 2: rule_fails
 
-**Description:** One validation rule fails
+**Description:** One validation rule fails — CT must raise VIOLATION
 
 ```yaml
 case_id: rule_fails
+expected_outcome: VIOLATION
 bindings:
   parameters:
     amount: -50
@@ -71,10 +73,5 @@ bindings:
       op: "gt"
       value: 0
 
-expected:
-  valid: false
-  failed_rule:
-    field: "amount"
-    op: "gt"
-    value: 0
+expected: {}
 ```

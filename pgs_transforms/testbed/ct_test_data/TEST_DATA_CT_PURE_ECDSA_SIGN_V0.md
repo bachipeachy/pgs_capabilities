@@ -42,6 +42,7 @@ Test ECDSA signature generation.
 
 ```yaml
 case_id: sign_message_secp256k1
+expected_outcome: SUCCESS
 bindings:
   private_key_bytes: "0xf79bb0d317b310b261a55a8ab393b4c8a1aba6fa4d08aef379caba502d5d67f9"
   message_hash: "0xb94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9"

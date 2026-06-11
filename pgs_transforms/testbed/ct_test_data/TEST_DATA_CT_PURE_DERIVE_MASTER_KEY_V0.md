@@ -42,6 +42,7 @@ Test BIP-32 master key derivation from seed via HMAC-SHA512.
 
 ```yaml
 case_id: derive_master_key_from_seed
+expected_outcome: SUCCESS
 bindings:
   seed_bytes: "0x5eb00bbddcf069084889a8ab9155568165f5c453ccb85e70811aaed6f6da5fc19a5ac40b389cd370d086206dec8aa6c43daea6690f20ad3d8d48b2d2ce9e38e4"
 

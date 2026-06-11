@@ -42,6 +42,7 @@ Test deterministic ID generation using Keccak-256 hashing.
 
 ```yaml
 case_id: generate_id_string_data
+expected_outcome: SUCCESS
 bindings:
   prefix: "AC"
   data: "test_account"
@@ -56,6 +57,7 @@ expected:
 
 ```yaml
 case_id: generate_id_object_data
+expected_outcome: SUCCESS
 bindings:
   prefix: "WF"
   data:
@@ -72,6 +74,7 @@ expected:
 
 ```yaml
 case_id: generate_id_numeric_data
+expected_outcome: SUCCESS
 bindings:
   prefix: "TX"
   data: 12345
@@ -87,6 +90,7 @@ expected:
 
 ```yaml
 case_id: generate_id_deterministic
+expected_outcome: SUCCESS
 bindings:
   prefix: "IN"
   data: "consistent"

@@ -42,6 +42,7 @@ Test quota availability checking logic.
 
 ```yaml
 case_id: quota_available
+expected_outcome: SUCCESS
 bindings:
   assigned_count: 5
   quota: 10
@@ -56,6 +57,7 @@ expected:
 
 ```yaml
 case_id: quota_exceeded
+expected_outcome: SUCCESS
 bindings:
   assigned_count: 10
   quota: 10
